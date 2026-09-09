@@ -21,40 +21,22 @@
             overflow-x: hidden;
         }
 
-        /* Scrollbar personalizado estilo premium */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
 
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #f97316;
-        }
-
-        /* Animaciones Personalizadas */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
 
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 15px #22c55e, 0 0 30px #22c55e40; }
             50% { box-shadow: 0 0 35px #22c55e, 0 0 50px #22c55e80; }
         }
-        .animate-pulse-glow {
-            animation: pulse-glow 2s infinite;
-        }
+        .animate-pulse-glow { animation: pulse-glow 2s infinite; }
 
         @keyframes gradient-x {
             0%, 100% { background-position: 0% 50%; }
@@ -77,7 +59,6 @@
         </svg>
     </a>
 
-    <!-- Brillos ambientales -->
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-orange-600/15 rounded-full blur-[150px] pointer-events-none z-0"></div>
 
     <!-- HEADER -->
@@ -97,7 +78,6 @@
 
             <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
                 <a href="#servicios" class="hover:text-orange-400 transition-colors">Servicios</a>
-                <a href="#flota" class="hover:text-orange-400 transition-colors">Nuestra Flota</a>
                 <a href="#tecnologia" class="hover:text-orange-400 transition-colors">Tecnología</a>
                 <a href="#contacto" class="hover:text-orange-400 transition-colors">Contacto</a>
             </nav>
@@ -111,23 +91,53 @@
         </div>
     </header>
 
-    <!-- HERO VIDEO SECTION -->
-    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <!-- HERO VIDEO SECTION (Solo Video + Cajas) -->
+    <section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
         <!-- Video de Fondo -->
         <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
             <source src="videolanding.mp4" type="video/mp4">
         </video>
-        <!-- Overlay sutil para que resalte el menú superior -->
-        <div class="absolute inset-0 w-full h-full bg-slate-950/30 z-0"></div>
+        <!-- Overlay sutil -->
+        <div class="absolute inset-0 w-full h-full bg-slate-950/40 z-0"></div>
+
+        <!-- Cajas Estadísticas -->
+        <div class="relative z-10 w-full px-6 mt-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 w-full max-w-6xl mx-auto">
+                <!-- Caja 1 -->
+                <div class="bg-slate-950/70 backdrop-blur-md border border-slate-700/50 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
+                    <i data-lucide="award" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
+                    <span class="text-2xl font-ultrablack text-white">+10 Años</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center leading-relaxed">Más de 10 años de experiencia en el medio</span>
+                </div>
+                <!-- Caja 2 -->
+                <div class="bg-slate-950/70 backdrop-blur-md border border-slate-700/50 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
+                    <i data-lucide="truck" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
+                    <span class="text-2xl font-ultrablack text-white">1.5 / 4 / 8 T</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center">Unidades Exactas</span>
+                </div>
+                <!-- Caja 3 -->
+                <div class="bg-slate-950/70 backdrop-blur-md border border-slate-700/50 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
+                    <i data-lucide="shield" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
+                    <span class="text-2xl font-ultrablack text-white">100%</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center">Carga Segura</span>
+                </div>
+                <!-- Caja 4 -->
+                <div class="bg-slate-950/70 backdrop-blur-md border border-slate-700/50 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
+                    <i data-lucide="navigation" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
+                    <span class="text-2xl font-ultrablack text-white">GPS</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 text-center leading-relaxed">GPS en todas nuestras unidades</span>
+                </div>
+            </div>
+        </div>
 
         <!-- Indicador de Scroll -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce flex flex-col items-center gap-2 opacity-70">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce flex flex-col items-center gap-2 opacity-70">
             <span class="text-[10px] font-black uppercase tracking-widest text-white drop-shadow-md">Explorar</span>
             <i data-lucide="chevron-down" class="text-white w-6 h-6 drop-shadow-md"></i>
         </div>
     </section>
 
-    <!-- INTRODUCCIÓN Y ESTADÍSTICAS -->
+    <!-- INTRODUCCIÓN Y TEXTO (DESPUÉS DEL SCROLL) -->
     <section class="relative py-24 px-6 z-10 bg-slate-950 text-center flex flex-col items-center border-t border-slate-900 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <span class="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 mb-6 shadow-[0_0_15px_rgba(249,115,22,0.1)] animate-float">
             <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Operador Logístico Certificado
@@ -137,33 +147,9 @@
             Conectamos desde <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-amber-400 animate-gradient">Tecún Umán</span> hasta <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 animate-gradient">Panamá</span>
         </h2>
 
-        <p class="text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium mb-12">
+        <p class="text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium mb-4">
             Dominamos la ruta centroamericana con flotas de <strong class="text-white">1.5, 4.0 y 8.0 toneladas</strong>. Respaldados por mantenimiento riguroso y tecnología de rastreo satelital ininterrumpido en tiempo real.
         </p>
-
-        <!-- Stats Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
-            <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
-                <i data-lucide="map" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
-                <span class="text-2xl font-ultrablack text-white">Toda C.A.</span>
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1 text-center">Frontera a Frontera</span>
-            </div>
-            <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
-                <i data-lucide="truck" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
-                <span class="text-2xl font-ultrablack text-white">1.5 / 4 / 8 T</span>
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1 text-center">Unidades Exactas</span>
-            </div>
-            <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
-                <i data-lucide="shield" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
-                <span class="text-2xl font-ultrablack text-white">100%</span>
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1 text-center">Carga Segura</span>
-            </div>
-            <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-5 rounded-3xl flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 group">
-                <i data-lucide="laptop" class="text-orange-500 mb-2 w-8 h-8 group-hover:scale-125 transition-transform"></i>
-                <span class="text-2xl font-ultrablack text-white">TMS</span>
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1 text-center">Plataforma WINGS</span>
-            </div>
-        </div>
     </section>
 
     <!-- SECCIÓN SERVICIOS -->
@@ -177,7 +163,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Servicio 1 -->
                 <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-8 rounded-[2rem] hover:border-orange-500/50 hover:shadow-[0_0_40px_rgba(249,115,22,0.1)] transition-all duration-500 group transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:scale-110 transition-all duration-300 shadow-lg">
                         <i data-lucide="package" class="text-slate-400 group-hover:text-white w-8 h-8 transition-colors"></i>
@@ -185,7 +170,6 @@
                     <h4 class="text-xl font-ultrablack text-white uppercase tracking-tight mb-3">Flota de 1.5 a 8 Toneladas</h4>
                     <p class="text-sm text-slate-400 font-medium">Contamos con camiones con capacidades exactas de 1.5, 4.0 y 8.0 toneladas para adaptarnos al volumen de tu mercadería sin que pagues espacio de sobra.</p>
                 </div>
-                <!-- Servicio 2 -->
                 <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-8 rounded-[2rem] hover:border-orange-500/50 hover:shadow-[0_0_40px_rgba(249,115,22,0.1)] transition-all duration-500 group transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:scale-110 transition-all duration-300 shadow-lg">
                         <i data-lucide="map-pin" class="text-slate-400 group-hover:text-white w-8 h-8 transition-colors"></i>
@@ -193,7 +177,6 @@
                     <h4 class="text-xl font-ultrablack text-white uppercase tracking-tight mb-3">Tecún Umán a Panamá</h4>
                     <p class="text-sm text-slate-400 font-medium">Expertos absolutos en el corredor aduanero. Transportamos desde la frontera Guatemala-México (Tecún Umán) cruzando todo el istmo hasta la República de Panamá.</p>
                 </div>
-                <!-- Servicio 3 -->
                 <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-8 rounded-[2rem] hover:border-orange-500/50 hover:shadow-[0_0_40px_rgba(249,115,22,0.1)] transition-all duration-500 group transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:scale-110 transition-all duration-300 shadow-lg">
                         <i data-lucide="wrench" class="text-slate-400 group-hover:text-white w-8 h-8 transition-colors"></i>
@@ -208,8 +191,6 @@
     <!-- SECCIÓN TECNOLOGÍA (WINGS) -->
     <section id="tecnologia" class="py-24 px-6 relative z-10">
         <div class="max-w-7xl mx-auto bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 rounded-[3rem] p-8 lg:p-16 border border-slate-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col lg:flex-row items-center gap-12 group">
-            
-            <!-- Brillo de fondo interactivo -->
             <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-orange-600/30 rounded-full blur-[80px] pointer-events-none transition-transform duration-700 group-hover:scale-150 group-hover:bg-orange-500/40"></div>
 
             <div class="flex-1 space-y-6 relative z-10 text-center lg:text-left">
@@ -250,11 +231,9 @@
                             <div></div>
                         </div>
                         <div class="flex-1 bg-slate-800 relative flex items-center justify-center overflow-hidden">
-                            <!-- Cuadrícula Radar -->
                             <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fb923c 1px, transparent 1px); background-size: 30px 30px;"></div>
                             <div class="absolute w-full h-full border-[0.5px] border-orange-500/10 rounded-full animate-ping" style="animation-duration: 3s;"></div>
 
-                            <!-- Simulación de la placa flotante -->
                             <div class="flex flex-col items-center absolute z-10 animate-bounce" style="animation-duration: 2s;">
                                 <div class="bg-slate-950 text-white px-4 py-1.5 rounded-md text-xs font-black uppercase shadow-xl border border-orange-500/50 mb-2 flex items-center gap-2">
                                     <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
@@ -369,5 +348,4 @@
         lucide.createIcons();
     </script>
 </body>
-
 </html>
