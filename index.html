@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Inversiones Fénix | Logística Avanzada y Transporte</title>
-    <!-- Tailwind CSS con soporte avanzado de animación -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,9 +21,6 @@
     </script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- GSAP para animaciones fluidas y sofisticadas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         .font-ultrablack { font-weight: 900; }
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap');
@@ -35,11 +32,10 @@
             overflow-x: hidden;
         }
 
-        /* Efecto Glassmorphism Avanzado con Borde Brillante */
         .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-blur: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
@@ -50,10 +46,9 @@
         .glass-card-hover:hover {
             transform: translateY(-8px) scale(1.01);
             border-color: rgba(249, 115, 22, 0.5);
-            box-shadow: 0 0 30px rgba(249, 115, 22, 0.2), 0 30px 60px -12px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 35px rgba(249, 115, 22, 0.25), 0 30px 60px -12px rgba(0, 0, 0, 0.8);
         }
 
-        /* Gradientes animados y brillos de fondo */
         @keyframes pulse-glow {
             0%, 100% { opacity: 0.4; transform: scale(1); }
             50% { opacity: 0.8; transform: scale(1.1); }
@@ -62,11 +57,17 @@
             animation: pulse-glow 8s ease-in-out infinite;
         }
 
-        @keyframes border-beam {
-            100% { offset-distance: 100%; }
+        /* Animación interactiva de camión recorriendo la ruta aduanera */
+        @keyframes highway-move {
+            0% { transform: translateX(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
+        }
+        .animated-truck-route {
+            animation: highway-move 8s linear infinite;
         }
 
-        /* Scrollbar sofisticado */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #030712; }
         ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
@@ -76,11 +77,11 @@
 
 <body class="selection:bg-orange-500 selection:text-white relative">
 
-    <!-- Elementos Dinámicos de Fondo (Blobs de Luz) -->
+    <!-- Luces Ambientales de Fondo -->
     <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-orange-600/15 rounded-full blur-[140px] pointer-events-none z-0 blob-glow"></div>
     <div class="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none z-0 blob-glow" style="animation-delay: 4s;"></div>
 
-    <!-- Botón Flotante de WhatsApp Ultra Vivo -->
+    <!-- WhatsApp Flotante -->
     <a href="https://wa.me/50376345696" target="_blank" rel="noopener noreferrer" 
        class="fixed bottom-8 right-8 bg-[#25D366] hover:bg-[#20ba5a] text-white w-16 h-16 rounded-full flex items-center justify-center z-[100] shadow-[0_0_30px_rgba(37,211,102,0.5)] hover:scale-110 active:scale-95 transition-all duration-300 group">
         <svg class="w-8 h-8 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
@@ -89,7 +90,7 @@
         <span class="absolute right-full mr-3 bg-slate-900 border border-slate-700 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-2xl pointer-events-none">¡Escríbenos!</span>
     </a>
 
-    <!-- HEADER SOFISTICADO -->
+    <!-- HEADER -->
     <header class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50">
         <div class="glass-card rounded-2xl px-6 py-4 flex items-center justify-between border border-white/10 shadow-2xl">
             <a href="#" class="flex items-center gap-3 group">
@@ -105,9 +106,9 @@
             </a>
 
             <nav class="hidden md:flex gap-8 text-xs font-extrabold uppercase tracking-widest text-slate-300">
+                <a href="#flota-interactiva" class="hover:text-orange-400 transition-colors">Flota Interactiva</a>
                 <a href="#servicios" class="hover:text-orange-400 transition-colors">Servicios</a>
-                <a href="#flota" class="hover:text-orange-400 transition-colors">Flota</a>
-                <a href="#tecnologia" class="hover:text-orange-400 transition-colors">Tecnología WINGS</a>
+                <a href="#tecnologia" class="hover:text-orange-400 transition-colors">WINGS TMS</a>
                 <a href="#contacto" class="hover:text-orange-400 transition-colors">Contacto</a>
             </nav>
 
@@ -115,19 +116,16 @@
                 <a href="https://wings.mufesasv.com"
                    class="relative group overflow-hidden rounded-xl bg-gradient-to-r from-orange-500 to-red-600 px-5 py-2.5 font-black text-[10px] sm:text-xs uppercase tracking-wider text-white shadow-lg shadow-orange-500/30 transition-all duration-300 hover:scale-105 active:scale-95">
                     <span class="relative z-10 flex items-center gap-2">Acceso WINGS <i data-lucide="rocket" class="w-4 h-4"></i></span>
-                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION MODERNO CON EFECTO DE PROFUNDIDAD -->
+    <!-- HERO SECTION -->
     <section class="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 px-6 overflow-hidden z-10">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900/40 via-[#030712] to-[#030712] -z-10"></div>
-        
         <div class="max-w-5xl mx-auto text-center space-y-8">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-orange-500/30 text-orange-400 text-xs font-black uppercase tracking-widest shadow-2xl animate-bounce">
-                <i data-lucide="zap" class="w-4 h-4 text-orange-400"></i> Liderazgo Logístico en Centroamérica
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-orange-500/30 text-orange-400 text-xs font-black uppercase tracking-widest shadow-2xl">
+                <i data-lucide="activity" class="w-4 h-4 text-orange-400 animate-pulse"></i> Innovación y Precisión Logística
             </div>
 
             <h2 class="text-5xl sm:text-7xl lg:text-8xl font-ultrablack uppercase tracking-tight leading-[0.95]">
@@ -135,93 +133,95 @@
             </h2>
 
             <p class="text-slate-400 text-base sm:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
-                Operaciones de transporte terrestre de alta precisión con unidades de <span class="text-white font-bold">1.5, 4.0 y 8.0 toneladas</span>. Monitoreo satelital y eficiencia comprobada.
+                Transporte terrestre transfronterizo respaldado por más de 10 años de experiencia, GPS en tiempo real y unidades con capacidades exactas de 1.5, 4.0 y 8.0 toneladas.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <a href="#contacto" class="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-black uppercase tracking-wider px-8 py-4 rounded-2xl shadow-xl shadow-orange-500/30 transition-all hover:scale-105 flex items-center justify-center gap-3">
-                    <i data-lucide="send" class="w-5 h-5"></i> Cotizar Flete Ahora
+                <a href="#flota-interactiva" class="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-black uppercase tracking-wider px-8 py-4 rounded-2xl shadow-xl shadow-orange-500/30 transition-all hover:scale-105 flex items-center justify-center gap-3">
+                    <i data-lucide="truck" class="w-5 h-5"></i> Explorar Flota Interactiva
                 </a>
-                <a href="#tecnologia" class="w-full sm:w-auto glass-card hover:bg-slate-800/80 text-white font-black uppercase tracking-wider px-8 py-4 rounded-2xl transition-all flex items-center justify-center gap-3 border border-slate-700">
-                    <i data-lucide="cpu" class="w-5 h-5 text-orange-400"></i> Ver Plataforma WINGS
+                <a href="#contacto" class="w-full sm:w-auto glass-card hover:bg-slate-800/80 text-white font-black uppercase tracking-wider px-8 py-4 rounded-2xl transition-all flex items-center justify-center gap-3 border border-slate-700">
+                    <i data-lucide="phone-call" class="w-5 h-5 text-orange-400"></i> Contactar Asesor
                 </a>
-            </div>
-        </div>
-
-        <!-- Cajas Dinámicas Holográficas (Estadísticas Clave) -->
-        <div class="w-full max-w-6xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col items-center text-center">
-                <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-4 border border-orange-500/20 text-orange-400">
-                    <i data-lucide="award" class="w-6 h-6"></i>
-                </div>
-                <span class="text-3xl font-ultrablack text-white">+10 Años</span>
-                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Experiencia en el Medio</span>
-            </div>
-
-            <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col items-center text-center">
-                <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-4 border border-orange-500/20 text-orange-400">
-                    <i data-lucide="truck" class="w-6 h-6"></i>
-                </div>
-                <span class="text-3xl font-ultrablack text-white">1.5 / 4 / 8 T</span>
-                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Capacidades Exactas</span>
-            </div>
-
-            <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col items-center text-center">
-                <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-4 border border-orange-500/20 text-orange-400">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
-                </div>
-                <span class="text-3xl font-ultrablack text-white">100%</span>
-                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Carga Protegida</span>
-            </div>
-
-            <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col items-center text-center">
-                <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-4 border border-orange-500/20 text-orange-400">
-                    <i data-lucide="navigation" class="w-6 h-6"></i>
-                </div>
-                <span class="text-3xl font-ultrablack text-white">GPS Live</span>
-                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">En Todas las Unidades</span>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS -->
-    <section id="servicios" class="py-28 px-6 relative z-10">
+    <!-- SECCIÓN INNOVADORA: SIMULADOR DE FLOTA INTERACTIVA CON CAMIÓN EN MOVIMIENTO -->
+    <section id="flota-interactiva" class="py-28 px-6 relative z-10 border-t border-slate-900 bg-slate-950/50">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
-                <span class="text-xs font-black text-orange-400 uppercase tracking-widest bg-orange-500/10 px-4 py-1.5 rounded-full border border-orange-500/20">Soluciones de Vanguardia</span>
-                <h3 class="text-4xl md:text-6xl font-ultrablack uppercase tracking-tight">Infraestructura y <span class="text-orange-500">Logística Integral</span></h3>
-                <p class="text-slate-400 text-base">Optimizamos cada eslabón de la cadena de suministro con estándares internacionales de calidad y puntualidad.</p>
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-black text-orange-400 uppercase tracking-widest bg-orange-500/10 px-4 py-1.5 rounded-full border border-orange-500/20">Tecnología Interactiva</span>
+                <h3 class="text-4xl md:text-6xl font-ultrablack uppercase tracking-tight">Selecciona tu <span class="text-orange-500">Unidad de Carga</span></h3>
+                <p class="text-slate-400 text-base">Haz clic en cada categoría para desplegar la especificación técnica de nuestras unidades en ruta.</p>
             </div>
 
+            <!-- Pista simulada con camión animado cruzando -->
+            <div class="relative w-full h-24 mb-12 overflow-hidden glass-card rounded-2xl border border-orange-500/20 flex items-center">
+                <div class="absolute inset-0 border-b-2 border-dashed border-orange-500/30 top-1/2"></div>
+                <div class="absolute animated-truck-route flex items-center gap-3 bg-slate-900/90 px-4 py-2 rounded-xl border border-orange-500/50 shadow-2xl z-20">
+                    <i data-lucide="truck" class="w-7 h-7 text-orange-500 animate-bounce"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-white">Unidad Activa</span>
+                        <span class="text-[8px] text-orange-400 uppercase font-mono">Monitoreo GPS Satelital</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjetas Interactivas de la Flota -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Servicio 1 -->
-                <div class="glass-card glass-card-hover p-8 rounded-[2.5rem] relative overflow-hidden group">
-                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all"></div>
+                <!-- Unidad 1.5 T -->
+                <div onclick="toggleFleet('unidad-1')" class="glass-card glass-card-hover p-8 rounded-[2.5rem] cursor-pointer relative group border-2 border-transparent hover:border-orange-500">
                     <div class="w-16 h-16 bg-slate-900 border border-slate-700 rounded-2xl flex items-center justify-center mb-6 text-orange-400 shadow-xl group-hover:scale-110 transition-transform">
-                        <i data-lucide="package" class="w-8 h-8"></i>
+                        <i data-lucide="box" class="w-8 h-8"></i>
                     </div>
-                    <h4 class="text-2xl font-ultrablack uppercase tracking-tight mb-4 text-white">Flotas Especializadas</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Unidades configuradas con capacidades estrictas de 1.5, 4.0 y 8.0 toneladas, ideales para distribución comercial regional y urbana sin mermar recursos.</p>
+                    <span class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest">Distribución Urbana y Ligera</span>
+                    <h4 class="text-3xl font-ultrablack uppercase tracking-tight mt-1 mb-3 text-white">1.5 Toneladas</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Diseñada para entregas comerciales ágiles, acceso a centros urbanos reducidos y paquetería express con total seguridad.</p>
+                    <div id="info-unidad-1" class="hidden pt-4 border-t border-slate-800 space-y-2 text-xs font-mono text-slate-300">
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Monitoreo GPS 24/7</p>
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Ideal para LTL y cargas parciales</p>
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Mantenimiento preventivo riguroso</p>
+                    </div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-orange-400 flex items-center gap-1 mt-4">
+                        <span>Haz clic para desplegar ficha</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </div>
                 </div>
 
-                <!-- Servicio 2 -->
-                <div class="glass-card glass-card-hover p-8 rounded-[2.5rem] relative overflow-hidden group">
-                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all"></div>
+                <!-- Unidad 4.0 T -->
+                <div onclick="toggleFleet('unidad-2')" class="glass-card glass-card-hover p-8 rounded-[2.5rem] cursor-pointer relative group border-2 border-transparent hover:border-orange-500">
                     <div class="w-16 h-16 bg-slate-900 border border-slate-700 rounded-2xl flex items-center justify-center mb-6 text-orange-400 shadow-xl group-hover:scale-110 transition-transform">
-                        <i data-lucide="compass" class="w-8 h-8"></i>
+                        <i data-lucide="truck" class="w-8 h-8"></i>
                     </div>
-                    <h4 class="text-2xl font-ultrablack uppercase tracking-tight mb-4 text-white">Corredor Mesoamericano</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Dominio total de los procesos aduaneros desde Tecún Umán en la frontera mexicana, transitando con fluidez por todo el istmo centroamericano hasta Panamá.</p>
+                    <span class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest">Media Carga Regional</span>
+                    <h4 class="text-3xl font-ultrablack uppercase tracking-tight mt-1 mb-3 text-white">4.0 Toneladas</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">El balance perfecto entre potencia y capacidad para abastecimiento de inventarios medianos a lo largo de Centroamérica.</p>
+                    <div id="info-unidad-2" class="hidden pt-4 border-t border-slate-800 space-y-2 text-xs font-mono text-slate-300">
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> International / Isuzu especializados</p>
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Capacidad de furgón optimizada</p>
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Sellos de seguridad inviolables</p>
+                    </div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-orange-400 flex items-center gap-1 mt-4">
+                        <span>Haz clic para desplegar ficha</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </div>
                 </div>
 
-                <!-- Servicio 3 -->
-                <div class="glass-card glass-card-hover p-8 rounded-[2.5rem] relative overflow-hidden group">
-                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all"></div>
+                <!-- Unidad 8.0 T -->
+                <div onclick="toggleFleet('unidad-3')" class="glass-card glass-card-hover p-8 rounded-[2.5rem] cursor-pointer relative group border-2 border-transparent hover:border-orange-500">
                     <div class="w-16 h-16 bg-slate-900 border border-slate-700 rounded-2xl flex items-center justify-center mb-6 text-orange-400 shadow-xl group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield-alert" class="w-8 h-8"></i>
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
                     </div>
-                    <h4 class="text-2xl font-ultrablack uppercase tracking-tight mb-4 text-white">Mantenimiento Preventivo</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Talleres y diagnósticos constantes sobre chasis y motores para asegurar cero incidencias mecánicas en ruta crítica.</p>
+                    <span class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest">Carga Pesada / FTL</span>
+                    <h4 class="text-3xl font-ultrablack uppercase tracking-tight mt-1 mb-3 text-white">8.0 Toneladas</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Freightliner M2 listos para cruzar fronteras aduaneras desde Tecún Umán hasta Panamá transportando gran volumen con total solidez.</p>
+                    <div id="info-unidad-3" class="hidden pt-4 border-t border-slate-800 space-y-2 text-xs font-mono text-slate-300">
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Autonomía para rutas largas</p>
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Conectividad satelital ininterrumpida</p>
+                        <p class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Pilotos certificados en aduanas</p>
+                    </div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-orange-400 flex items-center gap-1 mt-4">
+                        <span>Haz clic para desplegar ficha</span> <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,16 +235,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6 text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 bg-orange-500/20 px-4 py-2 rounded-xl border border-orange-500/40 text-orange-400 text-[10px] font-black uppercase tracking-widest shadow-lg">
-                        <div class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></div> Plataforma Exclusiva TMS
+                        <div class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></div> Sistema TMS WINGS
                     </div>
                     <h3 class="text-4xl lg:text-6xl font-ultrablack uppercase tracking-tight leading-none text-white">
-                        Domina tu carga con <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">WINGS</span>
+                        Visibilidad Satelital con <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">WINGS</span>
                     </h3>
                     <p class="text-slate-300 font-semibold text-lg">
-                        Transparencia total en tiempo real.
+                        Control absoluto de tu carga en la palma de tu mano.
                     </p>
                     <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-                        Nuestros clientes reciben accesos personalizados para verificar la ubicación satelital exacta de sus unidades, fichas de pilotos y reportes de estado instantáneos desde cualquier dispositivo.
+                        Nuestros clientes corporativos obtienen credenciales para supervisar cada flete interactuando con mapas en vivo, estado de rutas y reportes automatizados.
                     </p>
                     <div class="pt-4 flex justify-center lg:justify-start">
                         <a href="https://wings.mufesasv.com" class="bg-white hover:bg-slate-200 text-slate-950 font-black uppercase tracking-wider px-8 py-4 rounded-2xl shadow-2xl transition-all hover:scale-105 flex items-center gap-3">
@@ -253,7 +253,6 @@
                     </div>
                 </div>
 
-                <!-- Simulación UI Moderna de WINGS -->
                 <div class="w-full">
                     <div class="glass-card rounded-2xl border border-white/10 p-4 shadow-2xl">
                         <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
@@ -262,19 +261,18 @@
                                 <div class="w-3 h-3 rounded-full bg-amber-500"></div>
                                 <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
                             </div>
-                            <span class="text-[10px] font-mono text-slate-400 tracking-widest">WINGS_SATELLITE_FEED_v2.6</span>
+                            <span class="text-[10px] font-mono text-slate-400 tracking-widest">WINGS_TELEMETRY_v2.6</span>
                         </div>
                         <div class="bg-slate-950/80 rounded-xl h-64 sm:h-72 relative flex items-center justify-center overflow-hidden border border-slate-800">
                             <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#f97316_1px,transparent_1px)] [background-size:24px_24px]"></div>
                             
-                            <!-- Radar Elemento Animado -->
                             <div class="absolute w-48 h-48 border border-orange-500/20 rounded-full animate-ping" style="animation-duration: 4s;"></div>
                             
                             <div class="glass-card px-6 py-3 rounded-2xl border border-orange-500/40 shadow-2xl flex items-center gap-4 z-10 animate-bounce" style="animation-duration: 3s;">
                                 <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
                                 <div>
-                                    <p class="text-xs font-ultrablack text-white">UNIDAD ACTIVA EN RUTA</p>
-                                    <p class="text-[10px] text-orange-400 font-mono">GPS: TECÚN UMÁN - GUATEMALA</p>
+                                    <p class="text-xs font-ultrablack text-white">ESTATUS: EN TRÁNSITO</p>
+                                    <p class="text-[10px] text-orange-400 font-mono">CORREDOR CA-4 / PANAMÁ</p>
                                 </div>
                             </div>
                         </div>
@@ -289,9 +287,9 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-6">
-                    <span class="text-xs font-black text-orange-400 uppercase tracking-widest bg-orange-500/10 px-4 py-1.5 rounded-full border border-orange-500/20">Atención Inmediata</span>
-                    <h3 class="text-4xl md:text-6xl font-ultrablack uppercase tracking-tight">Comienza tu <span class="text-orange-500">Operación Logística</span></h3>
-                    <p class="text-slate-400 text-base leading-relaxed">¿Requieres una cotización formal o coordinar un flete inmediato? Comunícate con nuestra central de operaciones.</p>
+                    <span class="text-xs font-black text-orange-400 uppercase tracking-widest bg-orange-500/10 px-4 py-1.5 rounded-full border border-orange-500/20">Atención Directa</span>
+                    <h3 class="text-4xl md:text-6xl font-ultrablack uppercase tracking-tight">Cotiza tu <span class="text-orange-500">Flete Transfronterizo</span></h3>
+                    <p class="text-slate-400 text-base leading-relaxed">Escríbenos directamente o completa el formulario para coordinar tu requerimiento logístico inmediato.</p>
 
                     <div class="space-y-4 pt-4">
                         <a href="https://wa.me/50376345696" target="_blank" class="glass-card glass-card-hover p-6 rounded-2xl flex items-center gap-5 border border-slate-800 group">
@@ -299,7 +297,7 @@
                                 <i data-lucide="phone-call" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <h5 class="text-sm font-ultrablack uppercase tracking-wider text-white">Canal Directo WhatsApp</h5>
+                                <h5 class="text-sm font-ultrablack uppercase tracking-wider text-white">Canal WhatsApp Oficial</h5>
                                 <p class="text-xl font-black text-green-400 mt-0.5">+503 7634-5696</p>
                             </div>
                         </a>
@@ -309,14 +307,13 @@
                                 <i data-lucide="map-pin" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <h5 class="text-sm font-ultrablack uppercase tracking-wider text-white">Sede Central</h5>
+                                <h5 class="text-sm font-ultrablack uppercase tracking-wider text-white">Oficina Central</h5>
                                 <p class="text-sm font-medium text-slate-400 mt-0.5">Santa Tecla, La Libertad, El Salvador</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Formulario Dinámico -->
                 <div class="glass-card p-8 sm:p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative">
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -374,9 +371,18 @@
         </div>
     </footer>
 
-    <!-- Inicializador de Iconos -->
+    <!-- Script Interactivo para Desplegar Fichas de la Flota -->
     <script>
         lucide.createIcons();
+
+        function toggleFleet(id) {
+            const el = document.getElementById('info-' + id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
